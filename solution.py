@@ -47,12 +47,14 @@ def build_packet():
     # Make the header in a similar way to the ping exercise.
     
     myChecksum = 0
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
+    myChecksum = checksum(header + data)
     if sys.platform == 'darwin':
         myChecksum = htons(myChecksum) & 0xffff
     else:
         myChecksum = htons(myChecksum)
     header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
-    myChecksum = checksum(header + data)
+    
     
     
     
