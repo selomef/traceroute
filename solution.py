@@ -59,6 +59,7 @@ def build_packet():
     return packet
 
 def get_route(hostname):
+    icmp = getprotobyname("icmp")
     timeLeft = TIMEOUT
     tracelist1 = [] #This is your list to use when iterating through each trace
     tracelist2 = [] #This is your list to contain all traces
