@@ -37,7 +37,7 @@ def checksum(string):
     answer = answer >> 8 | (answer << 8 & 0xff00)
     return answer
 
-def build_packet():
+def build_packet(ID):
     #Fill in start
 
     # In the sendOnePing() method of the ICMP Ping exercise ,firstly the header of our
@@ -47,7 +47,7 @@ def build_packet():
     # Make the header in a similar way to the ping exercise.
     
     myChecksum = 0
-    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum)
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
     myChecksum = checksum(header + data)
     
     
