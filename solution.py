@@ -45,6 +45,7 @@ def build_packet():
     # then finally the complete packet was sent to the destination.
 
     # Make the header in a similar way to the ping exercise.
+    packet = header + data
     myChecksum = checksum(header + data)
     header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
    
@@ -57,7 +58,7 @@ def build_packet():
 
     # So the function ending should look like this
 
-    packet = header + data
+    
     return packet
 
 def get_route(hostname):
