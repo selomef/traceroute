@@ -37,7 +37,7 @@ def checksum(string):
     answer = answer >> 8 | (answer << 8 & 0xff00)
     return answer
 
-def build_packet(packet):
+def build_packet(data):
     #Fill in start
 
     # In the sendOnePing() method of the ICMP Ping exercise ,firstly the header of our
