@@ -105,11 +105,11 @@ def get_route(hostname):
                 icmpHeader = recvPacket[20:28]
                 request_type, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 #Fill in end
-                try: #try to fetch the hostname
+                #try to fetch the hostname
                     #Fill in start
-                    try:
-                        gethostbyname(hostname)
-                        return gethostbyname(hostname)
+                try:
+                    gethostbyname(hostname)
+                    return gethostbyname(hostname)
 
 
                     #Fill in end
