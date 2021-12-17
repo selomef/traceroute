@@ -45,9 +45,10 @@ def build_packet():
     # then finally the complete packet was sent to the destination.
 
     # Make the header in a similar way to the ping exercise.
+    
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
     packet = header + data
     myChecksum = checksum(header + data)
-    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
    
     myChecksum.append(header)
 
