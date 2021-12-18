@@ -132,7 +132,8 @@ def get_route(hostname):
                     gethostbyname(hostname)
 
 
-                    host_returned = gethostbyname(addr[0])[0]
+                    host_returned = gethostbyname(addr[0])
+                    #print(gethostbyname(addr[0]))
                     ip = gethostbyname(hostname)
 
 
@@ -181,7 +182,7 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-                
+
     return tracelist2
 
-#get_route("google.com")
+#print(get_route("google.com"))
