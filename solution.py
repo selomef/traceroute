@@ -73,7 +73,7 @@ def build_packet():
     return packet
 
 
-def get_route(hostname):
+def get_route(hostname, domain_name):
     icmp = getprotobyname("icmp")
     timeLeft = TIMEOUT
     tracelist1 = []  # This is your list to use when iterating through each trace
@@ -150,14 +150,14 @@ def get_route(hostname):
                     # Fill in start
                     # You should add your responses to your lists here
 
-                    tracelist1 = [ttl, rtt, ip, hostname]
+                    tracelist1 = [ttl, rtt, ip, hostname, domain_name]
                     tracelist2.append(tracelist1)
 
                     # Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    tracelist1 = [ttl, rtt, ip, hostname]
+                    tracelist1 = [ttl, rtt, ip, hostname, domain_name]
                     tracelist2.append(tracelist1)
 
                     # Fill in start
@@ -167,7 +167,7 @@ def get_route(hostname):
                 elif types == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    tracelist1 = [ttl, rtt, ip, hostname]
+                    tracelist1 = [ttl, rtt, ip, hostname, domain_name]
                     tracelist2.append(tracelist1)
 
                     # Fill in start
