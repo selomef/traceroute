@@ -132,7 +132,7 @@ def get_route(hostname, domain_name):
                     gethostbyname(hostname)
 
 
-                    host_returned = gethostbyname(addr[0])
+                    hostname = gethostbyname(addr[0])
                     #print(gethostbyname(addr[0]))
                     ip = gethostbyname(hostname)
 
