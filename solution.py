@@ -106,6 +106,7 @@ def get_route(hostname):
                     # Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
 
+
                 timeReceived = time.time()
                 rtt = timeReceived - t
                 timeLeft = timeLeft - howLongInSelect
@@ -129,6 +130,7 @@ def get_route(hostname):
                 # Fill in start
                 try:
                     gethostbyname(hostname)
+
 
                     host_returned = gethostbyname(addr[0])[0]
                     ip = gethostbyname(hostname)
@@ -173,10 +175,13 @@ def get_route(hostname):
                 else:
                     # Fill in start
                     # If there is an exception/error to your if statements, you should append that to your list here
+                    tracelist2.append("error")
                     print("error")
                     # Fill in end
                 break
             finally:
                 mySocket.close()
-                return tracelist2
+                
+    return tracelist2
+
 #get_route("google.com")
