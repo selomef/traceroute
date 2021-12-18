@@ -89,6 +89,7 @@ def get_route(hostname):
 
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
+            rtt = 0
             try:
                 d = build_packet()
                 mySocket.sendto(d, (hostname, 0))
@@ -104,6 +105,7 @@ def get_route(hostname):
                     # Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
+                rtt = timeReceived - t
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
                     tracelist1.append("* * * Request timed out.")
@@ -131,13 +133,14 @@ def get_route(hostname):
                     # Fill in start
                     host_returned = "Not found"
                     # Fill in end
-                
+
                 if types == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 +
                                                                 bytes])[0]
                     # Fill in start
                     # You should add your responses to your lists here
+
                     tracelist1 = [ttl, rtt, ip, host_returned]
                     tracelist2.append(tracelist1)
 
