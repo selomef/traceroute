@@ -52,6 +52,7 @@ def build_packet():
     myChecksum = 0
     header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
     data = struct.pack("d", time.time())
+    print(header + data)
     myChecksum = checksum(header + data)
     if sys.platform == 'darwin':
         myChecksum = htons(myChecksum) & 0xffff
@@ -104,7 +105,7 @@ def get_route(hostname):
                     tracelist2.append(tracelist1)
                     # Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
-                
+
                 timeReceived = time.time()
                 rtt = timeReceived - t
                 timeLeft = timeLeft - howLongInSelect
@@ -174,5 +175,4 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-
-
+#get_route("google.com")
