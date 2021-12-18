@@ -175,4 +175,4 @@ def get_route(hostname):
             finally:
                 mySocket.close()
 
-get_route("google.com")
+
