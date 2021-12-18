@@ -104,6 +104,7 @@ def get_route(hostname):
                     tracelist2.append(tracelist1)
                     # Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
+                
                 timeReceived = time.time()
                 rtt = timeReceived - t
                 timeLeft = timeLeft - howLongInSelect
@@ -119,6 +120,7 @@ def get_route(hostname):
             else:
                 # Fill in start
                 # Fetch the icmp type from the IP packet
+                ip = addr[0]
                 icmpHeader = recvPacket[20:28]
                 types, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 # Fill in end
@@ -149,7 +151,7 @@ def get_route(hostname):
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     tracelist1 = [ttl, rtt, ip, host_returned]
-                    tracelist12.append(tracelist1)
+                    tracelist2.append(tracelist1)
 
                     # Fill in start
                     # You should add your responses to your lists here
@@ -173,3 +175,4 @@ def get_route(hostname):
             finally:
                 mySocket.close()
 
+get_route("google.com")
