@@ -125,13 +125,13 @@ def get_route(hostname):
                     #Fill in start
                 try:
                     gethostbyname(hostname)
-                    return gethostbyname(hostname)
+                    host_returned = gethostbyname(addr[0])[0]
 
 
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
-                    return none
+                    host_returned = "Not found"
                     #Fill in end
 
                 if types == 11:
@@ -140,14 +140,14 @@ def get_route(hostname):
                     bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
-                    tracelist1 = [ttl, rtt, ip, hostname]
+                    tracelist1 = [ttl, rtt, ip, host_returned]
                     tracelist2.append(tracelist1)
                     
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    tracelist1 = [ttl, rtt, ip, hostname]
+                    tracelist1 = [ttl, rtt, ip, host_returned]
                     tracelist12.append(tracelist1)
                     
                     #Fill in start
@@ -157,7 +157,7 @@ def get_route(hostname):
                 elif types == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    tracelist1 = [ttl, rtt, ip, hostname]
+                    tracelist1 = [ttl, rtt, ip, host_returned]
                     tracelist2.append(tracelist1)
                     
                     #Fill in start
